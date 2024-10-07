@@ -11,6 +11,8 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static java.lang.System.exit;
+
 
 public class HelloController implements Initializable {
     @FXML
@@ -20,7 +22,7 @@ public class HelloController implements Initializable {
     private TextField labelHermanos;
 
     @FXML
-    private ComboBox comboBoxEdad;
+    private ComboBox<String> comboBoxEdad;
 
     @FXML
     private RadioButton radioHombre;
@@ -71,13 +73,16 @@ public class HelloController implements Initializable {
     }
 
     public void salirPrograma(ActionEvent actionEvent) {
+        exit(0);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String[] listaString = new String[] {"Futbol", "Tenis", "Baloncesto"};
+        String[] listaString = new String[] {"Futbol", "Tenis", "Baloncesto", "Natacion", "Ciclismo", "Otro"};
         listaDeportes.getItems().addAll(listaString);
         listaDeportes.setDisable(true);
         listaDeportes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        String[] edadesCombo = new String[] {"Menores de 18", "Entre 18 - 30", "Entre 31 - 50", "Entre 51 - 70", "Mayores de 70"};
+        comboBoxEdad.getItems().addAll(edadesCombo);
     }
 }
