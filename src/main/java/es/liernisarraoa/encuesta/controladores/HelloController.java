@@ -1,6 +1,7 @@
 package es.liernisarraoa.encuesta.controladores;
 
 
+
 import es.liernisarraoa.encuesta.HelloApplication;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ import static java.lang.System.exit;
 
 public class HelloController implements Initializable {
     private Scene sceneApplication;
+    private String errores = "";
 
     @FXML
     private TextField labelProfesion;
@@ -28,15 +30,6 @@ public class HelloController implements Initializable {
 
     @FXML
     private ComboBox<String> comboBoxEdad;
-
-    @FXML
-    private RadioButton radioHombre;
-
-    @FXML
-    private RadioButton radioMujer;
-
-    @FXML
-    private RadioButton radioOtro;
 
     @FXML
     private ToggleGroup RadioGrupo;
@@ -55,26 +48,49 @@ public class HelloController implements Initializable {
 
     @FXML
     private Slider sliderCine;
-
-    @FXML
-    private Button botonAceptar;
-
-    @FXML
-    private Button botonCancelar;
-
-    @FXML
-    private VBox VBoxPantalla;
     
     public void visualizarLista(ActionEvent actionEvent) {
         listaDeportes.setDisable(!checkBoxPractica.isSelected());
     }
 
-    public void mensajeInfo(ActionEvent actionEvent) {
+    public void btnAceptar(ActionEvent actionEvent) {
+        errores = "";
         sceneApplication = HelloApplication.getScene();
-        alerta();
+        if(labelHermanos.getText().isEmpty()){
+            errores += "Hay que rellenar el campo de Numero de Hermanos.\n";
+        } else {
+            try {
+                int hermanos = Integer.parseInt(labelHermanos.getText());
+            } catch(NumberFormatException e){
+                errores += "En el campo de Numero de Hermanos solo se aceptan numeros.\n";
+            }
+        }
+        if(labelProfesion.getText().isEmpty()){
+            errores += "Hay que rellenar el campo de Profesion.\n";
+        }
+        if(checkBoxPractica.isSelected()){
+            ObservableList<String> deportesSeleccionados = listaDeportes.getSelectionModel().getSelectedItems();
+            if(deportesSeleccionados.isEmpty()){
+                errores += "Si se ha seleccionado la parte de (¿Practicas?), tiene que haber como minimo un deporte seleccionado.\n";
+            }
+        }
+        if(errores.isEmpty()){
+            alertaInfo();
+        } else{
+            alertaError();
+        }
     }
 
-    public void alerta(){
+    private void alertaError() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initOwner(sceneApplication.getWindow());
+        alert.setHeaderText(null);
+        alert.setTitle("Error");
+        alert.setContentText(errores);
+        alert.showAndWait();
+    }
+
+    public void alertaInfo(){
         ObservableList<String> deportesSeleccionados = listaDeportes.getSelectionModel().getSelectedItems();
         String deportes = "";
         for(int i = 0; i < deportesSeleccionados.size(); i++){

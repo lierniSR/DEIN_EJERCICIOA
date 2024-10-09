@@ -248,7 +248,7 @@
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
          <children>
-            <Button fx:id="botonAceptar" mnemonicParsing="false" onAction="#mensajeInfo" prefWidth="150.0" text="ACEPTAR">
+            <Button fx:id="botonAceptar" mnemonicParsing="false" onAction="#btnAceptar" prefWidth="150.0" text="ACEPTAR">
                <font>
                   <Font size="14.0" />
                </font>
