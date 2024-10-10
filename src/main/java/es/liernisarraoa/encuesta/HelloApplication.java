@@ -13,6 +13,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("encuesta.fxml"));
         scene = new Scene(fxmlLoader.load(), 625, 580);
         stage.setTitle("Encuesta!");
+        stage.setResizable(true);
         stage.setScene(scene);
         stage.show();
     }
