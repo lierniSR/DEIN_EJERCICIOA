@@ -1,1 +1,0 @@
-moduleSearchIndex = [{"l":"es.liernisarraoa.encuesta"}];updateSearchResults();
