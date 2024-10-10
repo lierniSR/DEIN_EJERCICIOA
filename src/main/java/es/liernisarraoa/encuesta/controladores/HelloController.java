@@ -2,7 +2,7 @@ package es.liernisarraoa.encuesta.controladores;
 
 
 
-import es.liernisarraoa.encuesta.HelloApplication;
+import es.liernisarraoa.encuesta.Encuesta;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,7 +54,7 @@ public class HelloController implements Initializable {
 
     public void btnAceptar(ActionEvent actionEvent) {
         errores = "";
-        sceneApplication = HelloApplication.getScene();
+        sceneApplication = Encuesta.getScene();
         if(labelHermanos.getText().isEmpty()){
             errores += "Hay que rellenar el campo de Numero de Hermanos.\n";
         } else {
